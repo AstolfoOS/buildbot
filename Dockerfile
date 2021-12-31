@@ -1,7 +1,7 @@
 FROM archlinux:latest
 
 RUN pacman -Syu --noconfirm
-RUN pacman -S base-devel git --noconfirm
+RUN pacman -S base-devel git doas --noconfirm
 
 RUN mkdir /buildbot
 RUN chmod 777 /buildbot
