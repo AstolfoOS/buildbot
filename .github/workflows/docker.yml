@@ -17,11 +17,18 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Image name
+        id: image_name
+        uses: ASzc/change-string-case-action@v1
+        with:
+          string: ${{ github.repository }}
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: |
+            ghcr.io/${{ steps.image_name.outputs.lowercase }}:latest
+            ghcr.io/${{ steps.image_name.outputs.lowercase }}:${{ github.sha }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
