@@ -14,9 +14,9 @@ get_repo_version() {
 
 set -e
 
-sudo chmod 777 /buildbot/repo
+doas chmod 777 /buildbot/repo
 
-sudo pacman -Syu
+doas pacman -Syu
 
 if ! [ -d /buildbot/packages/.git ]; then
   git clone "$REPO_URL" /buildbot/packages

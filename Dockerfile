@@ -7,8 +7,9 @@ RUN mkdir /buildbot
 RUN chmod 777 /buildbot
 WORKDIR /buildbot
 
-ADD --chown=root:root sudoers /etc/sudoers
-RUN chmod 440 /etc/sudoers
+RUN echo 'permit :wheel' > /etc/doas.conf
+RUN chmod 400 /etc/doas.conf
+RUN echo 'PACMAN_AUTH=("doas %c")' >> /etc/makepkg.conf
 
 RUN useradd -m -G wheel buildbot
 USER buildbot
