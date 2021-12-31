@@ -7,10 +7,12 @@ RUN mkdir /buildbot
 RUN chmod 777 /buildbot
 WORKDIR /buildbot
 
+ADD --chown=root:root sudoers /etc/sudoers
+RUN chmod 440 /etc/sudoers
+
 RUN useradd -m -G wheel buildbot
 USER buildbot
 
-ADD sudoers /etc/sudoers
 ADD src/ /buildbot/src
 
 VOLUME [ "/buildbot/repo" ]
