@@ -10,7 +10,7 @@ WORKDIR /buildbot
 
 RUN echo 'permit nopass :wheel' > /etc/doas.conf
 RUN chmod 400 /etc/doas.conf
-RUN echo 'PACMAN_AUTH=("doas %c")' >> /etc/makepkg.conf
+RUN echo 'PACMAN_AUTH=("doas")' >> /etc/makepkg.conf
 
 RUN useradd -m -G wheel buildbot
 USER buildbot
