@@ -14,7 +14,7 @@ get_repo_version() {
 
 set -e
 
-doas chmod 777 /buildbot/repo
+doas chown -R buildbot /buildbot/{packages,repo,tmp}
 
 doas pacman -Syu
 
