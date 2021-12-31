@@ -38,6 +38,9 @@ for i in *; do
   fi
 
   tmpdir="/buildbot/tmp/$i"
+  if [ -d "$tmpdir" ]; then
+    rm -rf "$tmpdir"
+  fi
   cp -r "$i" "$tmpdir"
 
   pushd "$tmpdir" > /dev/null
