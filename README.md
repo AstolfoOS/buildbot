@@ -1,6 +1,6 @@
 # AstolfOS Build Bot
 
-A Docker image that builds every updated package and creates a pacman repository on a schedule. The image is available under `ghcr.io/AstolfoOS/buildbot:latest`
+A Docker image that builds every updated package and creates a pacman repository on a schedule. The image is available under `ghcr.io/astolfoos/buildbot:latest`
 
 ## Volumes
 
