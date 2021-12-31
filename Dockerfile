@@ -2,12 +2,13 @@ FROM archlinux:latest
 
 RUN pacman -Syu --noconfirm
 RUN pacman -S base-devel git doas --noconfirm
+RUN pacman -Rns sudo --noconfirm
 
 RUN mkdir /buildbot
 RUN chmod 777 /buildbot
 WORKDIR /buildbot
 
-RUN echo 'permit :wheel nopass' > /etc/doas.conf
+RUN echo 'permit nopass :wheel' > /etc/doas.conf
 RUN chmod 400 /etc/doas.conf
 RUN echo 'PACMAN_AUTH=("doas %c")' >> /etc/makepkg.conf
 
