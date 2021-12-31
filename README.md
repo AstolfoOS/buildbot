@@ -4,11 +4,12 @@ A Docker image that builds every updated package and creates a pacman repository
 
 ## Volumes
 
-| Path               | Usage                                          |
-| ------------------ | ---------------------------------------------- |
-| /buildbot/packages | Where the source PKGBUILD repository is stored |
-| /buildbot/repo     | Where the generated repo is stored             |
-| /buildbot/tmp      | Where the build files are copied for building  |
+| Path               | Usage                                                                            |
+| ------------------ | -------------------------------------------------------------------------------- |
+| /buildbot/packages | Where the source PKGBUILD repository is stored                                   |
+| /buildbot/repo     | Where the generated repo is stored                                               |
+| /buildbot/tmp      | Where the build files are copied for building                                    |
+| /buildbot/key.asc  | The GPG secret key used to sign packages if enabled. Must not have a passphrase. |
 
 ## Environment Variables
 
@@ -16,6 +17,7 @@ A Docker image that builds every updated package and creates a pacman repository
 | --------- | ----------------------------------------- | ---------------------------------------------------------------------------------------- |
 | REPO_URL  | https://github.com/AstolfoOS/packages.git | The URL of the source repository. Must contain directories which each contain a PKGBUILD |
 | REPO_NAME | astolfos                                  | The name of the generated repo                                                           |
+| SIGN      | false                                     | Whether the repo and packages should be signed                                           |
 
 ## License
 

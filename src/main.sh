@@ -14,6 +14,12 @@ get_repo_version() {
 
 set -e
 
+if [ "$SIGN" = true ]; then
+  gpg --import key.asc
+  MAKEPKG_ARGS="$MAKEPKG_ARGS --sign"
+  REPO_ARGS="$REPO_ARGS --sign"
+fi
+
 doas chown -R buildbot /buildbot/{packages,repo,tmp}
 
 doas pacman -Syu
@@ -46,14 +52,14 @@ for i in *; do
   pushd "$tmpdir" > /dev/null
 
   echo "Building $i in $tmpdir"
-  makepkg -srcf --noconfirm
+  makepkg -srcf --noconfirm "$MAKEPKG_ARGS"
 
   # Remove the old package
-  rm "/buildbot/repo/$i-"*".pkg.tar.zst" || true # ignore errors
+  rm "/buildbot/repo/$i-"*".pkg.tar.zst"{,.sig} || true # ignore errors
 
   # Add the new package
-  cp "./$i-"*".pkg.tar.zst" /buildbot/repo
-  repo-add -R "/buildbot/repo/$REPO_NAME.db.tar.zst" "/buildbot/repo/$i-"*".pkg.tar.zst"
+  cp "./$i-"*".pkg.tar.zst"{,.sig} /buildbot/repo
+  repo-add -R "$REPO_ARGS" "/buildbot/repo/$REPO_NAME.db.tar.zst" "/buildbot/repo/$i-"*".pkg.tar.zst"
   
   popd > /dev/null
 
