@@ -16,7 +16,6 @@ set -e
 [ "$DEBUG" = true ] && set -o xtrace
 
 if [ "$SIGN" = true ]; then
-  gpg --import key.asc
   MAKEPKG_ARGS="--sign"
   REPO_ARGS="--sign"
 fi
