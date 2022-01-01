@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-set -o xtrace
+[ "$DEBUG" = true ] && set -o xtrace
 
 while true; do
   if ! { jobs | grep -Eo 'Running.+repo.sh' > /dev/null; }; then

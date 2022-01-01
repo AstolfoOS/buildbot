@@ -20,6 +20,7 @@ Packages are built once every hour
 | REPO_URL  | https://github.com/AstolfoOS/packages.git | The URL of the source repository. Must contain directories which each contain a PKGBUILD |
 | REPO_NAME | astolfos                                  | The name of the generated repo                                                           |
 | SIGN      | false                                     | Whether the repo and packages should be signed                                           |
+| DEBUG     | false                                     | If true, enables the bash xtrace option (logging every command execution)                |
 
 ## License
 

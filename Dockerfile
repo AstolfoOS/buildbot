@@ -24,5 +24,6 @@ VOLUME [ "/buildbot/tmp" ]
 ENV REPO_URL=https://github.com/AstolfoOS/packages.git
 ENV REPO_NAME=astolfos
 ENV SIGN=false
+ENV DEBUG=false
 
 CMD [ "/bin/bash", "/buildbot/src/main.sh" ]

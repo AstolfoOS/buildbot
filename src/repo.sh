@@ -13,7 +13,7 @@ get_repo_version() {
 }
 
 set -e
-set -o xtrace
+[ "$DEBUG" = true ] && set -o xtrace
 
 if [ "$SIGN" = true ]; then
   gpg --import key.asc
